@@ -1,0 +1,15 @@
+{
+  "name": "aquavr",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A first-person 3D aquarium learning experience with A-Frame and WebXR",
+  "license": "MIT",
+  "scripts": {
+    "start": "node tools/server.mjs",
+    "dev": "node tools/server.mjs",
+    "test:browser": "node tools/verify.mjs",
+    "check": "node --check src/main.js && node --check src/player.js && node --check src/world.js && node --check src/creatures.js && node --check src/graphics.js"
+  },
+  "devDependencies": { "playwright": "1.64.1" }
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071a24">
+  <meta name="description" content="Walk through AquaVR: a first-person virtual aquarium with living reefs, a shark tunnel, kelp forests and a panoramic ocean tank.">
+  <title>AquaVR — A world beneath the surface</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='18' fill='%230b2633'/%3E%3Ctext x='10' y='58' font-size='62' fill='%238fe5d1'%3E≈%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/aframe-1.6.0.min.js"></script>
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <a-scene id="scene" renderer="antialias: true; colorManagement: true; physicallyCorrectLights: true; preserveDrawingBuffer: true" background="color: #102734" fog="type: exponential; color: #102734; density: 0.009" vr-mode-ui="enabled: false" loading-screen="enabled: false" webxr="optionalFeatures: local-floor, bounded-floor; referenceSpaceType: local-floor">
+    <a-entity id="rig" position="0 0 11">
+      <a-entity id="camera" camera="near: 0.05; far: 180; fov: 75" position="0 1.65 0" look-controls="pointerLockEnabled: true; touchEnabled: true"></a-entity>
+      <a-entity id="left-controller" laser-controls="hand: left" raycaster="enabled: false"></a-entity>
+      <a-entity id="right-controller" laser-controls="hand: right" raycaster="enabled: false"></a-entity>
+    </a-entity>
+  </a-scene>
+
+  <div id="loading" role="status"><span class="loading-mark">≈</span><p>Bringing the ocean to life</p><small id="load-status">Building your aquarium…</small></div>
+  <main id="interface" hidden>
+    <header class="hud-header"><a class="brand" href="#" id="brand"><span>≈</span> AQUA<span class="vr-word">VR</span></a><div class="location"><span class="live-dot"></span><span id="location-name">Coral Reef</span><span class="location-divider">/</span><span id="location-index">01 — 06</span></div><button id="menu-button" class="quiet-button">Menu <kbd>ESC</kbd></button></header>
+
+    <section id="welcome" class="welcome">
+      <div class="overline">AN IMMERSIVE OCEAN EXPERIENCE</div>
+      <h1>A world beneath<br>the surface.</h1>
+      <p>Step inside. Follow the reef, walk beneath giants,<br>and discover an ocean full of life.</p>
+      <div class="welcome-actions"><button id="start" class="primary" disabled>Preparing aquarium…</button><button id="enter-vr" class="secondary">Enter VR <span>◉</span></button></div>
+      <div class="welcome-details"><span>6 CONNECTED GALLERIES</span><i></i><span>EXPLORE AT YOUR OWN PACE</span></div>
+      <div class="welcome-controls"><span><kbd>W A S D</kbd> Walk</span><span><kbd>MOUSE</kbd> Look around</span><span><kbd>E</kbd> Interact</span></div>
+    </section>
+
+    <div id="crosshair" hidden aria-hidden="true"><span></span></div>
+    <div id="interaction" class="interaction" hidden><kbd>E</kbd><span id="interaction-label">Inspect</span></div>
+    <div id="arrival" class="arrival" hidden><span id="arrival-tag"></span><h2 id="arrival-title"></h2></div>
+    <div id="caption" class="caption" role="status" hidden></div>
+    <div id="toast" class="toast" role="status" hidden></div>
+
+    <footer id="hud-footer"><div class="control-hints"><span><kbd>WASD</kbd> Walk</span><span><kbd>E</kbd> Inspect</span><button id="map-button"><kbd>M</kbd> Map</button><button id="photo-button"><kbd>P</kbd> Photograph</button><button id="journal-button"><kbd>J</kbd> Journal <span id="photo-count">0</span></button></div><div class="visit-progress"><span id="visited-count">0</span> / 6 galleries explored</div></footer>
+    <div id="touch-controls" hidden><button data-move="KeyW" aria-label="Walk forward">↑</button><div><button data-move="KeyA" aria-label="Walk left">←</button><button data-move="KeyS" aria-label="Walk backward">↓</button><button data-move="KeyD" aria-label="Walk right">→</button></div><button id="touch-interact">Inspect</button></div>
+  </main>
+
+  <dialog id="panel" aria-labelledby="panel-title"><div class="panel-top"><span class="overline">AQUAVR · FIELD GUIDE</span><button id="close-panel" aria-label="Close panel">×</button></div><h2 id="panel-title"></h2><div id="panel-body"></div><div id="panel-actions"></div><p class="panel-hint">ESC to close · Click the aquarium to resume mouse look</p></dialog>
+  <noscript><div class="fatal">AquaVR needs JavaScript to render its 3D world. Enable JavaScript and reload.</div></noscript>
+</body>
+</html>
